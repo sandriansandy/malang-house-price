@@ -271,4 +271,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # st.code di tengah dengan styling yang sesuai
-st.code("https://tower-interference-lgr6ezsp4fk7raputhsnxq.streamlit.app/", language="text")
+st.code("""
+            <iframe
+            src="https://malang-house-price-mefnzjebqfop7rpjb3486i.streamlit.app/?embed=true"
+            style="height: 450px; width: 100%;"
+            ></iframe>
+        """, language="html")

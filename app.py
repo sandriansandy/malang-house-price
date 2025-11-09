@@ -123,6 +123,11 @@ if "Bangunan" in tipe_properti:
              "Agustus", "September", "Oktober", "November", "Desember"],
             key="bulan_bangunan"
         )
+        kamar_tidur = st.number_input(
+            "Kamar Tidur", 
+            0, 20, 3,
+            help="Jumlah kamar tidur"
+        )
     
     with col2:
         luas_bangunan = st.number_input(
@@ -135,10 +140,10 @@ if "Bangunan" in tipe_properti:
             0.0, 10000.0, 72.0, 1.0,
             help="Masukkan luas tanah dalam meter persegi"
         )
-        kamar_tidur = st.number_input(
-            "Kamar Tidur", 
-            0, 20, 3,
-            help="Jumlah kamar tidur"
+        kondisi_properti = st.selectbox(
+            "Kondisi Properti", 
+            ["Bagus", "Baru", "Butuh Renovasi", "Renovasi Minimum", "Renovasi Total", "Sudah Renovasi", "Tanah"],
+            key="kondisi_properti"
         )
     
     with col3:
@@ -215,6 +220,7 @@ if start_predict:
             "luas_bangunan": luas_bangunan,
             "kamar_mandi": kamar_mandi,
             "kamar_tidur": kamar_tidur,
+            "kondisi_properti": kondisi_properti if "Bangunan" in tipe_properti else "Tanah",
             "kecamatan": kecamatan,
             "bulan": bulan,
             "jumlah_lantai": jumlah_lantai
@@ -250,6 +256,7 @@ if start_predict:
                 if "Bangunan" in tipe_properti:
                     st.metric("Luas Bangunan", f"{luas_bangunan:,.0f} m²")
                 st.metric("Jumlah Lantai", f"{jumlah_lantai} Lantai")
+                st.metric("Kondisi Properti", f"{kondisi_properti}")
         
         else:
             col1, col2 = st.columns(2)
@@ -257,6 +264,7 @@ if start_predict:
                 st.metric("Tipe Properti", "Tanah")
             with col2:
                 st.metric("Luas Tanah", f"{luas_tanah:,.0f} m²")
+
 
 # =========================
 # FOOTER & EMBED INFO
